@@ -8,6 +8,7 @@
     <i class="fas fa-arrow-left"></i> Back
 </a>
 @endsection
+
 <style>
     .table thead tr input {
             background: transparent;
