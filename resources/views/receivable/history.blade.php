@@ -3,7 +3,11 @@
     RECEIVABLE PAYMENTS HISTORY
 @endsection
 @section('content')
- 
+@section('button')
+<a type="button" class="btn btn-primary" href="{{ route('receivable.index') }}">
+    <i class="fas fa-arrow-left"></i> Back
+</a>
+@endsection
 <style>
     .table thead tr input {
             background: transparent;

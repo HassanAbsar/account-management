@@ -8,7 +8,7 @@ use App\Http\Controllers\ReceivableController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('layouts.home');
 });
 
 // city

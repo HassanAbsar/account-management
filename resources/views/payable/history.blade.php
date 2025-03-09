@@ -2,6 +2,11 @@
 @section('title')
     PAYABLE PAYMENTS HISTORY
 @endsection
+@section('button')
+<a type="button" class="btn btn-primary" href="{{ route('payable.index') }}">
+    <i class="fas fa-arrow-left"></i> Back
+</a>
+@endsection
 @section('content')
  
 <style>

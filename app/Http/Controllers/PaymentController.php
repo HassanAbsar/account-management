@@ -13,6 +13,7 @@ class PaymentController extends Controller
 {
     public function storePaymentReceivabale(Request $request) {
         // dd($request->all());
+
         $payment_history =  new PaymentHistory();
         $payment_history->receivable_id = $request->receivable_id;
         $payment_history->total_amount = $request->total_amount;
@@ -37,6 +38,16 @@ class PaymentController extends Controller
             $payment->payment_term = $request->payment_term;
             $payment->date = Carbon::now()->format('d/m/Y');
             $payment->save();
+            $receivable = Receivable::find($request->receivable_id);
+            if (isset($receivable)) {
+                $receivable->remaining = $request->balance;
+                if ($request->balance != 0) {
+                    $receivable->payment_status = "Partially-Paid";
+                }else{
+                    $receivable->payment_status = "Paid";
+                }
+                $receivable->save();
+            }
         return redirect()->route('receivable.index')->with('success', 'Receivable Created Successfully.');
         }else{
             $payment =  Payment::find($request->payment_id);
@@ -50,14 +61,21 @@ class PaymentController extends Controller
             $payment->payment_term = $request->payment_term;
             $payment->date = Carbon::now()->format('d/m/Y');
             $payment->save();
+
+            $receivable = Receivable::find($request->receivable_id);
+            if (isset($receivable)) {
+                $receivable->remaining = $request->balance;
+                if ($request->balance != 0) {
+                    $receivable->payment_status = "Partially-Paid";
+                }else{
+                    $receivable->payment_status = "Paid";
+                }
+                $receivable->save();
+            }
         return redirect()->route('receivable.index')->with('success', 'Receivable Updated Successfully.');
 
         }
-        $receivable = Receivable::find($request->receivable_id);
-        if (isset($receivable)) {
-            $receivable->remaining = $request->balance;
-            $receivable->save();
-        }
+       
     }
 
     public function storePaymentPayable(Request $request) {
