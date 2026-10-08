@@ -1,66 +1,255 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Account Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A complete Laravel-based financial accounting and account management system with comprehensive transaction tracking, multi-account support, and detailed reporting.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Backend:** Laravel 11, PHP 8.2+
+- **Frontend:** Bootstrap 5.3, Select2, DataTables, Toastr, Bootstrap Icons
+- **Database:** MySQL 8.0+ / MariaDB 10.4+
+- **Package Manager:** Composer 2.x, Node.js 18+
+- **Reporting:** PDF export, Excel export
+- **Theme:** Modern responsive design
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Clone & Install
+```bash
+git clone https://github.com/HassanAbsar/account-management.git account-management
+cd account-management
+composer install
+npm install && npm run build
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2. Environment Setup
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Edit `.env`:
+```env
+APP_NAME="Account Management System"
+APP_URL=http://localhost
 
-## Laravel Sponsors
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=account_management
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Database
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-### Premium Partners
+### 4. Storage Link
+```bash
+php artisan storage:link
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 5. Run
+```bash
+php artisan serve
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Default Login
 
-## Code of Conduct
+| Role | URL | Username | Password |
+|------|-----|----------|----------|
+| Admin | `/login` | `admin` | `admin123` |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> ⚠️ Change passwords immediately after first login!
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Module Overview
 
-## License
+| Module | Route | Description |
+|--------|-------|-------------|
+| Dashboard | `/` | Account overview, balances, recent transactions |
+| Accounts | `/accounts` | Account CRUD and management |
+| Transactions | `/transactions` | Record debit/credit transactions |
+| Account Ledger | `/ledger` | Detailed transaction history per account |
+| Bank Reconciliation | `/reconciliation` | Match bank statements with records |
+| Reports | `/reports` | Account statements, trial balance |
+| Charts of Accounts | `/coa` | Account hierarchy management |
+| Users | `/users` | User management and permissions |
+| Settings | `/settings` | System configuration |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Features
+
+### Core Accounting
+- ✅ Multi-account ledger system
+- ✅ Double-entry accounting
+- ✅ Transaction recording (debit/credit)
+- ✅ Account balance tracking
+- ✅ Journal entry management
+
+### Reporting
+- 📊 Account statements
+- 📊 Trial balance
+- 📊 Income statement
+- 📊 Balance sheet
+- 📊 General ledger reports
+- 📊 PDF/Excel export
+
+### Bank Management
+- 🏦 Bank account integration
+- 🏦 Statement reconciliation
+- 🏦 Pending transaction tracking
+
+### User Management
+- 👥 Role-based access control
+- 👥 User activity logging
+- 👥 Permission management
+
+---
+
+## Account Types
+
+- Cash
+- Bank
+- Accounts Receivable
+- Accounts Payable
+- Assets
+- Liabilities
+- Equity
+- Income
+- Expenses
+
+---
+
+## Transaction Types
+
+- Deposit
+- Withdrawal
+- Transfer
+- Payment
+- Refund
+- Adjustment
+
+---
+
+## Requirements
+
+- PHP 8.2+
+- MySQL 8.0+ or MariaDB 10.4+
+- Composer 2.x
+- Node.js 18+ (for assets)
+
+---
+
+## File Structure
+
+```
+app/
+├── Http/Controllers/
+│   ├── AccountController.php
+│   ├── TransactionController.php
+│   ├── ReportController.php
+│   └── ReconciliationController.php
+├── Models/
+│   ├── Account.php
+│   ├── Transaction.php
+│   ├── User.php
+│   └── ...
+
+database/
+├── migrations/
+└── seeders/
+
+resources/views/
+├── layouts/
+├── accounts/
+├── transactions/
+├── reports/
+├── reconciliation/
+└── ...
+
+routes/
+└── web.php
+```
+
+---
+
+## Configuration
+
+### Account Settings
+Navigate to `/settings/accounts` to:
+- Configure account types
+- Set default payment methods
+- Define account categories
+
+### System Settings
+- Date format preferences
+- Currency configuration
+- Fiscal year settings
+- Backup options
+
+---
+
+## Usage Examples
+
+### Record a Transaction
+1. Go to `/transactions`
+2. Click "New Transaction"
+3. Select account, type, and amount
+4. Add description and date
+5. Click "Save"
+
+### Generate Reports
+1. Navigate to `/reports`
+2. Select report type
+3. Choose date range
+4. Download as PDF or Excel
+
+### Bank Reconciliation
+1. Go to `/reconciliation`
+2. Upload bank statement
+3. Match transactions
+4. Mark as reconciled
+
+---
+
+## Security Features
+
+- User authentication & authorization
+- Password encryption
+- Activity logging
+- Audit trail
+- CSRF protection
+- SQL injection prevention
+
+---
+
+## Performance Optimization
+
+- Database indexing on frequently queried fields
+- Query caching
+- Asset minification
+- Lazy loading of related data
+
+---
+
+## Support & Maintenance
+
+For issues, feature requests, or questions:
+- Open an issue on GitHub
+- Review the documentation
+- Check the FAQ section
+
+---
+
+*Account Management System · Built with Laravel*
